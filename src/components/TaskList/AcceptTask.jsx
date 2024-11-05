@@ -1,19 +1,19 @@
 import React from 'react'
 
-const AcceptTask = () => {
+const AcceptTask = ({data}) => {
   return (
       <div className='flex-shrink-0 h-full w-[300px] p-5 bg-red-400 rounded-xl'>
         <div className='flex justify-between items-center'>
-            <h3 className='bg-red-600 text-sm px-3 py-1 rounded'>High</h3>
-            <h4 className='text-sm'>28 Oct 2024</h4>
+            <h3 className='bg-red-600 text-sm px-3 py-1 rounded'>{data.category}</h3>
+            <h4 className='text-sm'>{data.taskDate}</h4>
         </div>
-        <h2 className='mt-5 text-2xl font-semibold'>Do homework</h2>
+        <h2 className='mt-5 text-2xl font-semibold'>{data.taskTitle}</h2>
         <p className='text-sm mt-2'>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo reiciendis culpa, ipsam itaque accusantium perferendis.
+            {data.taskDescription}
         </p>
         <div className='flex justify-between mt-4'>
-            <button className='bg-green-500 py-1 px-2 text-sm'>Mark as Completed</button>
-            <button className='bg-red-500 py-1 px-2 text-sm'>Mark as Failed</button>
+            <button className='bg-green-500 rounded font-medium py-1 px-2 text-xs'>Mark as Completed</button>
+            <button className='bg-red-500 rounded font-medium py-1 px-2 text-xs'>Mark as Failed</button>
         </div>
       </div>
   )
