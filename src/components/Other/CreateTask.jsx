@@ -16,18 +16,33 @@ const CreateTask = () => {
     const submitHandler = (e) => {
         e.preventDefault()
 
-        setNewTask({ taskTitle, taskDescription, taskDate, category, active: false, newTask: true, failed: false, completed: false })
+        const task = { 
+            taskTitle, 
+            taskDescription, 
+            taskDate, 
+            category, 
+            active: false, 
+            newTask: true, 
+            failed: false, 
+            completed: false 
+        };
 
-        const data = userData 
-
-        data.forEach(function (elem) {
-            if (assignTo == elem.firstName) {
-                elem.tasks.push(newTask)
-                elem.taskCounts.newTask = elem.taskCounts.newTask + 1
+        const updatedData = userData.map((elem) => {
+            if (assignTo === elem.firstName) {
+                const updatedTasks = [...elem.tasks, task];
+                return {
+                    ...elem,
+                    tasks: updatedTasks,
+                    taskCounts: {
+                        ...elem.taskCounts,
+                        newTask: elem.taskCounts.newTask + 1,
+                    },
+                };
             }
-        })
-        setUserData(data)
-        console.log(data)
+            return elem;
+        });
+    
+        setUserData(updatedData);
         
         setTaskTitle('')
         setCategory('')
